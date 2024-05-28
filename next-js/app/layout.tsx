@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Chakra_Petch } from "next/font/google";
 import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const chakra =  Chakra_Petch({ subsets: ["latin"], weight: ['300'] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
