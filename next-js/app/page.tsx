@@ -1,17 +1,19 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import Card from "@/components/Card"
 import { format } from "path";
 import Image from 'next/image'
-import { Chakra_Petch } from "next/font/google";
+import { Chakra_Petch, Yatra_One } from "next/font/google";
+import ContactlessRoundedIcon from '@mui/icons-material/ContactlessRounded';
 
-const chakra = Chakra_Petch({ subsets: ["latin"], weight: ['300'] });
+const chakra = Chakra_Petch({ subsets: ["latin"], weight: ['400'] });
+const yatra = Yatra_One({ subsets: ["latin"], weight: ['400'] });
 
 export default function Home() {
 
-  const [cardNum, setCardNum] = useState('XXXXXXXXXXXXXXXX');
-  const [color, setColor] = useState("secondary")
+  const [cardNum, setCardNum] = useState('');
+  const [color, setColor] = useState('#2b2b2b')
   const [result, setResult] = useState('Result displayed here');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +63,7 @@ export default function Home() {
     const totalSum = evenSum + oddSum;
 
     totalSum % 10 === 0 ? setResult("Card is Valid") : setResult("Card is not Valid");
+    totalSum % 10 === 0 ? setColor("#2b83e2") : setColor("#ff6666");
   }
 
   let newString: string[] = [];
@@ -73,18 +76,37 @@ export default function Home() {
     }
   }
 
+  for (let i = 0; i < newString.length; i++) {
+    if (newString[i] === undefined) {
+      newString[i] = 'X';
+    }
+  }
+
+  const urls = {
+    bank: 'https://aashirvaad-bank.netlify.app',
+    port: 'https://anshuman.me'
+  }
+
+  const openWeb = (url: string) => {
+    window.open(`${url}`, '_blank')
+  }
+
   return (
     <>
-      <h1 className="text-4xl text-primary font-bold underline underline-offset-8">Credit Card Validator</h1>
+      <header className="flex flex-col items-center justify-center gap-1">
+        <h1 className="text-4xl text-primary font-bold underline underline-offset-8">Credit Card Validator</h1>
+        <p>Powered by <span className={`${yatra.className} text-[#ff7722] underline underline-offset-2 cursor-pointer`} onClick={() => openWeb(urls.bank)}>Aashirvaad Bank</span></p>
+      </header>
 
       <div className="flex gap-3">
 
         <input
           value={cardNum}
           onChange={handleChange}
-          type="number"
+          type="text"
           placeholder="Credit card number"
           className="text-lg p-2 rounded-md w-full focus:outline-0 border-[1px] text-primary focus:border-primary"
+          maxLength={16}
         />
 
         <button
@@ -96,24 +118,33 @@ export default function Home() {
 
       </div>
 
-      <div className="flex justify-center flex-col rounded-xl bg-accent w-[500px] aspect-video text-3xl min-w-[300px] relative">
+      <div className="creditCard flex justify-end flex-col gap-0 rounded-xl w-[500px] aspect-video text-3xl min-w-[300px] relative text-primary">
 
-        <div className="w-full bg-secondary h-20 top-10 grid place-items-end">
-          <Image src="/logo.png" alt="logo" width="75" height="75" />
+        <div className="w-full h-20 absolute top-0 rounded-t-xl grid place-items-end">
+          <Image src="/logo.png" alt="logo" width="75" height="75" className="bankLogo cursor-pointer" onClick={() => openWeb(urls.bank)} />
         </div>
 
-        <div className="flex text-black p-3 uppercase">Anshuman Bhardwaj</div>
+        <ContactlessRoundedIcon className="absolute right-2 top-[50%] -translate-y-[50%]" style={{ fontSize: '30px', opacity: '0.6' }} />
 
-        <div className={`${chakra.className} bg-secondary w-full h-[36px] px-3 overflow-hidden`}>{newString}</div>
+        <div className="flex p-3 uppercase text-2xl cursor-pointer" onClick={() => openWeb(urls.port)}>Anshuman Studios</div>
 
-        <div className="flex flex-row items-center text-sm gap-0 text-secondary">
-          <p className='text-[10px] leading-3'>VALID<br />THRU</p>
-          <p>&infin;/&infin;</p>
+        <div className={`${chakra.className} w-full h-[36px] px-3 overflow-hidden cardNumber`}>{newString}</div>
+
+        <div className="validity flex flex-row gap-5 p-3 text-[20px]">
+          <div className="flex flex-row items-center gap-0">
+            <p className='text-[10px] leading-3'>VALID<br />FROM</p>
+            <p>&infin;/&infin;</p>
+          </div>
+
+          <div className="flex flex-row items-center gap-0">
+            <p className='text-[10px] leading-3'>VALID<br />THRU</p>
+            <p>&infin;/&infin;</p>
+          </div>
         </div>
 
       </div>
 
-      <div className={`text-xl bg-${color} flex items-center justify-center w-64 h-10 p-2 rounded-lg border-gray-600 border-[1px]`}>{result}</div>
+      <div className={`text-xl flex items-center justify-center w-64 h-10 p-2 rounded-lg border-gray-600 border-[1px]`} style={{ background: color }}>{result}</div>
     </>
   );
 }

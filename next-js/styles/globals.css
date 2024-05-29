@@ -24,3 +24,16 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.creditCard {
+  background: rgb(43, 43, 43);
+  background: radial-gradient(circle, #2c2c2c 0%, #303030 100%);
+}
+
+.bankLogo {
+  filter: drop-shadow(0 0 10px #ff7722);
+}
+
+.cardNumber {
+  filter: drop-shadow(0 0 1px #f4ebd9);
+}

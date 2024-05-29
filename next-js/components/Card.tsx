@@ -15,11 +15,11 @@ const Card = (cardNum: string) => {
         <Image src="/logo.png" alt="logo" width="75" height="75" />
       </div>
     
-      <div className="flex text-black p-3 uppercase">Anshuman Bhardwaj</div>
+      <div className="flex p-3 uppercase">Anshuman Bhardwaj</div>
 
       <div className={`${chakra.className} flex bg-secondary w-full h-fit px-3`}>{formatNumber(cardNum)}</div>
 
-      <div className="flex flex-row items-center text-sm gap-0 text-secondary">
+      <div className="flex flex-row items-center text-sm gap-0">
         <p className='text-[10px] leading-3'>VALID<br/>THRU</p>
         <p>&infin;/&infin;</p>
       </div>
