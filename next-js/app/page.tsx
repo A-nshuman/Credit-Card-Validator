@@ -6,6 +6,7 @@ import { format } from "path";
 import Image from 'next/image'
 import { Chakra_Petch, Yatra_One } from "next/font/google";
 import ContactlessRoundedIcon from '@mui/icons-material/ContactlessRounded';
+import { Head } from "next/document";
 
 const chakra = Chakra_Petch({ subsets: ["latin"], weight: ['400'] });
 const yatra = Yatra_One({ subsets: ["latin"], weight: ['400'] });
@@ -93,6 +94,10 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Credit Card Validator</title>
+      </Head>
+
       <header className="flex flex-col items-center justify-center gap-1">
         <h1 className="text-4xl text-primary font-bold underline underline-offset-8 max-sm:text-3xl">Credit Card Validator</h1>
         <p>Powered by <span className={`${yatra.className} text-[#ff7722] underline underline-offset-2 cursor-pointer`} onClick={() => openWeb(urls.bank)}>Aashirvaad Bank</span></p>
