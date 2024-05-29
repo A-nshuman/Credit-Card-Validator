@@ -94,11 +94,11 @@ export default function Home() {
   return (
     <>
       <header className="flex flex-col items-center justify-center gap-1">
-        <h1 className="text-4xl text-primary font-bold underline underline-offset-8">Credit Card Validator</h1>
+        <h1 className="text-4xl text-primary font-bold underline underline-offset-8 max-sm:text-3xl">Credit Card Validator</h1>
         <p>Powered by <span className={`${yatra.className} text-[#ff7722] underline underline-offset-2 cursor-pointer`} onClick={() => openWeb(urls.bank)}>Aashirvaad Bank</span></p>
       </header>
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 max-sm:w-[90%]">
 
         <input
           value={cardNum}
@@ -118,19 +118,19 @@ export default function Home() {
 
       </div>
 
-      <div className="creditCard flex justify-end flex-col gap-0 rounded-xl w-[500px] aspect-video text-3xl min-w-[300px] relative text-primary">
+      <div className="creditCard flex justify-end flex-col gap-0 rounded-xl w-[500px] aspect-video text-3xl min-w-[300px] relative text-primary max-sm:w-[300px]">
 
-        <div className="w-full h-20 absolute top-0 rounded-t-xl grid place-items-end">
+        <div className="w-full h-20 absolute top-0 rounded-t-xl grid place-items-end max-sm:place-items-start max-sm:top-2">
           <Image src="/logo.png" alt="logo" width="75" height="75" className="bankLogo cursor-pointer" onClick={() => openWeb(urls.bank)} />
         </div>
 
         <ContactlessRoundedIcon className="absolute right-2 top-[50%] -translate-y-[50%]" style={{ fontSize: '30px', opacity: '0.6' }} />
 
-        <div className="flex p-3 uppercase text-2xl cursor-pointer" onClick={() => openWeb(urls.port)}>Anshuman Studios</div>
+        <div className="flex p-3 uppercase text-2xl cursor-pointer max-sm:text-sm" onClick={() => openWeb(urls.port)}>Anshuman Studios</div>
 
-        <div className={`${chakra.className} w-full h-[36px] px-3 overflow-hidden cardNumber`}>{newString}</div>
+        <div className={`${chakra.className} w-full h-[36px] px-3 overflow-hidden cardNumber max-sm:text-lg`}>{newString}</div>
 
-        <div className="validity flex flex-row gap-5 p-3 text-[20px]">
+        <div className="validity flex flex-row gap-5 p-3 text-[20px] max-sm:hidden">
           <div className="flex flex-row items-center gap-0">
             <p className='text-[10px] leading-3'>VALID<br />FROM</p>
             <p>&infin;/&infin;</p>
